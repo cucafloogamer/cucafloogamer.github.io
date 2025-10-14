@@ -1,0 +1,105 @@
+:root{
+  --bg:#071033;
+  --card:#0f1728;
+  --muted:#9ca3af;
+  --accent-600:#4f46e5;
+  --success:#10b981;
+  --error:#ef4444;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#071033 0%, #0b1220 100%);color:#f8fafc;-webkit-font-smoothing:antialiased}
+
+/* contenedor principal del formulario (usa esta clase alrededor del form) */
+.form-wrapper{
+  width:100%;
+  max-width:520px;
+  background:var(--card);
+  border-radius:14px;
+  padding:1.25rem;
+  box-shadow:0 6px 18px rgba(2,6,23,0.6);
+  border:1px solid rgba(255,255,255,0.03);
+  margin:0 auto;
+}
+
+/* cabecera */
+.form-header{text-align:center;padding-bottom:.6rem}
+.form-header h1{font-size:1.25rem;margin-bottom:.25rem}
+.form-header p{color:var(--muted);font-size:.92rem}
+
+/* estructura */
+form{display:block}
+.row{display:flex;gap:.75rem}
+.col{flex:1;min-width:0}
+
+/* labels e inputs */
+label{display:block;font-weight:600;color:#e6eef8;font-size:.95rem;margin-bottom:.35rem}
+input[type="text"], input[type="email"], textarea, select{
+  width:100%;
+  padding:.78rem .9rem;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color:inherit;
+  font-size:1rem;
+  line-height:1.2;
+  outline:none;
+  transition:box-shadow .12s ease, border-color .12s ease, background .12s ease;
+}
+textarea{min-height:120px;resize:vertical}
+input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.45)}
+
+input:focus, textarea:focus{
+  border-color: rgba(79,70,229,0.95);
+  box-shadow: 0 4px 18px rgba(79,70,229,0.12);
+  background: rgba(255,255,255,0.015);
+}
+
+/* acciones y botones: centrado y más pequeño */
+.actions{
+  margin-top:1rem;
+  display:flex;
+  gap:.75rem;
+  justify-content:center; /* centrar el botón */
+  flex-wrap:wrap;
+}
+.btn{
+  flex:0 0 auto; /* no ocupar todo el ancho */
+  padding:.68rem .9rem;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  color:white;
+  background:var(--accent-600);
+  box-shadow:0 6px 16px rgba(79,70,229,0.16);
+  transition:transform .08s ease,opacity .12s ease;
+  min-width:140px;
+  max-width:280px;
+  text-align:center;
+}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
+
+/* botón secundario si lo necesitas */
+.btn.secondary{
+  background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);box-shadow:none;font-weight:600
+}
+
+/* mensajes de estado */
+.notice{margin-top:1rem;padding:.8rem;border-radius:8px;font-weight:600;text-align:center;display:none}
+.notice.show{display:block;animation:fadeIn .18s ease}
+.notice.success{background:linear-gradient(90deg, rgba(16,185,129,0.08), rgba(16,185,129,0.03));color:var(--success);border:1px solid rgba(16,185,129,0.12)}
+.notice.error{background:linear-gradient(90deg, rgba(239,68,68,0.06), rgba(239,68,68,0.02));color:var(--error);border:1px solid rgba(239,68,68,0.12)}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* responsive */
+@media (max-width:420px){
+  .form-wrapper{padding:1rem;border-radius:12px}
+  .form-header h1{font-size:1.125rem}
+  /* mantener botón centrado y más compacto en móviles */
+  .actions{flex-direction:row}
+  .btn{min-width:120px;max-width:260px;padding:.6rem .8rem}
+  .row{flex-direction:column}
+}
